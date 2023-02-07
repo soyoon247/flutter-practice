@@ -23,7 +23,7 @@
 
 [Flutter Architecture](https://docs.flutter.dev/resources/architectural-overview)
 
-<img src="https://docs.flutter.dev/assets/images/docs/arch-overview/archdiagram.png" width=50% height=50% align="left">
+<img src="https://docs.flutter.dev/assets/images/docs/arch-overview/archdiagram.png" width=50% height=50%>
 
 - 네이티브 앱 개발을 할 때는 운영체제(ios, android)와 직접 대화를 하고, 이 운영체제가 각 요소들을 만들어준다.
 - 플러터는 직접 버튼을 만들지 않고, 운영체제와 소통을 하지도 않는다 > 비디오 게임 엔진처럼 동작함
@@ -32,7 +32,6 @@
   - ios와 비슷해보이지만 똑같지는 않다. 가짜 위젯이라 부자연스럽다고 하기도 한다.  
   - 하지만 특정 운영체제에 의존하지 않고 화면상의 모든 픽셀을 조절하기 때문에 navigation, animation 등 모든 걸 통제할 수 있고,
   - 어느 플랫폼에서나 똑같이 보인다. 
- 
 - 각각의 플랫폼에 특화된 Embedder(runner project)가 존재하고, 이는 엔진을 가동시킨다. 
 
 
