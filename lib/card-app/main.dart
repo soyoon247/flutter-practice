@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widgets/button.dart';
-import 'package:flutter_practice/widgets/card.dart';
+import 'package:flutter_practice/card-app/widgets/button.dart';
+import 'package:flutter_practice/card-app/widgets/card.dart';
 
 void main() {
   runApp(const App());

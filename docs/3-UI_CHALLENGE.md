@@ -1,4 +1,4 @@
-[코드](../lib/main.dart)
+[코드](../lib/card-app/main.dart)
 
 ### Improve DX
 
