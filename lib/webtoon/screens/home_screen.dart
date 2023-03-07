@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/webtoon/services/api_service.dart';
 
 import '../models/webtoon_model.dart';
+import '../widgets/webtoon_widget.dart';
 
 // basic way, but There is a way to make it in StatelessWidget
 // class HomeScreen extends StatefulWidget {
@@ -33,9 +34,30 @@ class HomeScreen extends StatelessWidget {
 
   final Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
+  ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
+      scrollDirection: Axis.horizontal,
+      itemCount: snapshot.data!.length,
+      itemBuilder: (context, index) {
+        print(index);
+        var webtoon = snapshot.data![index];
+        return Webtoon(
+          title: webtoon.title,
+          thumb: webtoon.thumb,
+          id: webtoon.id,
+        );
+      },
+      // 모든 리스트를 다 그리지 않고, 사용자가 보고 있는 아이템만 build한다, 보고 있지 않으면 메모리에서 삭제한다.
+      separatorBuilder: (context, index) => const SizedBox(width: 40),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(webtoons);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -61,16 +83,15 @@ class HomeScreen extends StatelessWidget {
               //     // ListView 는 스크롤뷰도 제공한다.
               //   ],
               // );
-              return ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  print(index);
-                  var webtoon = snapshot.data![index];
-                  return Text(webtoon.title);
-                },
-                // 모든 리스트를 다 그리지 않고, 사용자가 보고 있는 아이템만 build한다, 보고 있지 않으면 메모리에서 삭제한다.
-                separatorBuilder: (context, index) => const SizedBox(width: 20),
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(
+                      // expanded 를 안 쓰면 column이 ListView 의 크기를 모르기 때문에 에러가 난다.
+                      child: makeList(snapshot)),
+                ],
               ); // ListView 보다 최적화
             }
             return const Center(
@@ -80,3 +101,4 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 }
+// Expanded 는 row, column의 child를 확장해서, child 가 남는 공간을 다 채우게 한다.
