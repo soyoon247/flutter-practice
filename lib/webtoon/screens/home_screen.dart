@@ -89,7 +89,8 @@ class HomeScreen extends StatelessWidget {
                     height: 50,
                   ),
                   Expanded(
-                      // expanded 를 안 쓰면 column이 ListView 의 크기를 모르기 때문에 에러가 난다.
+                      // Expanded 를 안 쓰면 column이 ListView 의 크기를 모르기 때문에 에러가 난다.
+                      // Expanded 는 row, column의 child를 확장해서, child 가 남는 공간을 다 채우게 한다.
                       child: makeList(snapshot)),
                 ],
               ); // ListView 보다 최적화
@@ -101,4 +102,3 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 }
-// Expanded 는 row, column의 child를 확장해서, child 가 남는 공간을 다 채우게 한다.
