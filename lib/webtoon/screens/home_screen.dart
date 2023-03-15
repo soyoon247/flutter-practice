@@ -32,7 +32,8 @@ import '../widgets/webtoon_widget.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
+  final Future<List<WebtoonModel>> webtoons = ApiService
+      .getTodaysToons(); // 다른 arg가 필요하지 않아서 바로 할당 가능했음. (DetailScreen에서와 다름)
 
   ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
     return ListView.separated(
@@ -64,10 +65,12 @@ class HomeScreen extends StatelessWidget {
           elevation: 2,
           backgroundColor: Colors.white,
           foregroundColor: Colors.green,
-          title: const Text(
-            "오늘의 웹툰",
-            style: TextStyle(
-              fontSize: 24,
+          title: const Center(
+            child: Text(
+              "오늘의 웹툰",
+              style: TextStyle(
+                fontSize: 24,
+              ),
             ),
           ),
         ),

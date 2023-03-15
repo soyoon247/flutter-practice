@@ -22,32 +22,35 @@ class Webtoon extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(
-                title: title,
-                thumb: thumb,
-                id: id,
-              ),
-              fullscreenDialog:
-                  true, // 없으면 카드처럼, 있으면 스크린처럼 동작(x 버튼, 아래서 뜨는 이미지)
-            ));
+                builder: (context) => DetailScreen(
+                      title: title,
+                      thumb: thumb,
+                      id: id,
+                    ),
+                fullscreenDialog:
+                    true // 없으면 카드처럼, 있으면 스크린처럼 동작(x 버튼, 아래서 뜨는 이미지)
+                ));
       },
       child: Column(
         children: [
-          Container(
-            width: 250,
-            clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범을 제어함
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 15,
-                  offset: const Offset(10, 10),
-                  //  그림자의 위치 조정 (0,0)은 정가운데
-                  color: Colors.black.withOpacity(0.5),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(15),
+          Hero(
+            tag: id,
+            child: Container(
+              width: 250,
+              clipBehavior: Clip.hardEdge, // 자식의 부모 영역 침범을 제어함
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 15,
+                    offset: const Offset(10, 10),
+                    //  그림자의 위치 조정 (0,0)은 정가운데
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image.network(thumb, headers: {'User-Agent': userAgent}),
             ),
-            child: Image.network(thumb, headers: {'User-Agent': userAgent}),
           ),
           const SizedBox(height: 10),
           Text(title,
